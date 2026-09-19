@@ -200,3 +200,49 @@ h1 {
 .tile-new {
     animation: tile-spawn 0.15s ease-out;
 }
+
+/* Subtle feedback when tiles merge */
+
+@keyframes board-merge {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.008);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.board-merge {
+    animation: board-merge 0.12s ease-out;
+}
+
+#new-game-button {
+    transition:
+        transform 0.12s ease,
+        background-color 0.12s ease;
+}
+
+#new-game-button:hover {
+    background-color: #7f6a58;
+}
+
+#new-game-button:active {
+    transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tile-new,
+    .board-merge {
+        animation: none;
+    }
+
+    #new-game-button {
+        transition: none;
+    }
+}
