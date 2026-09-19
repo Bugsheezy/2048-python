@@ -134,16 +134,18 @@ class GameGUI:
                 if play_again:
                     self.new_game()
 
-            elif self.game.game_over():
-                play_again = messagebox.askyesno(
-                    "Game Over",
-                    f"No more moves available.\n\n"
-                    f"Final Score: {self.game.score}\n\n"
-                    "Start a new game?"
-                )
+                return
 
-                if play_again:
-                    self.new_game()
+        if self.game.game_over():
+            play_again = messagebox.askyesno(
+                "Game Over",
+                f"No more moves available.\n\n"
+                f"Final Score: {self.game.score}\n\n"
+                "Start a new game?"
+            )
+
+            if play_again:
+                self.new_game()
 
     def update_display(self):
         for row in range(4):
