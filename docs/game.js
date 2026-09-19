@@ -522,12 +522,26 @@ boardElement.addEventListener(
     "touchstart",
     function (event) {
 
+        event.preventDefault();
+
         const touch = event.changedTouches[0];
 
-        touchStartX = touch.screenX;
-        touchStartY = touch.screenY;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
     },
-    { passive: true }
+    { passive: false }
+);
+
+
+boardElement.addEventListener(
+    "touchmove",
+    function (event) {
+
+        // Prevent the page from scrolling while
+        // the player is swiping on the game board
+        event.preventDefault();
+    },
+    { passive: false }
 );
 
 
@@ -535,10 +549,12 @@ boardElement.addEventListener(
     "touchend",
     function (event) {
 
+        event.preventDefault();
+
         const touch = event.changedTouches[0];
 
-        const touchEndX = touch.screenX;
-        const touchEndY = touch.screenY;
+        const touchEndX = touch.clientX;
+        const touchEndY = touch.clientY;
 
         const differenceX =
             touchEndX - touchStartX;
@@ -548,7 +564,7 @@ boardElement.addEventListener(
 
         const minimumSwipeDistance = 30;
 
-        // Ignore very small movements
+        // Ignore taps and very small movements
         if (
             Math.abs(differenceX) < minimumSwipeDistance &&
             Math.abs(differenceY) < minimumSwipeDistance
@@ -580,7 +596,7 @@ boardElement.addEventListener(
             }
         }
     },
-    { passive: true }
+    { passive: false }
 );
 
 // New Game button
