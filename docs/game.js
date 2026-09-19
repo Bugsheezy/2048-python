@@ -16,7 +16,7 @@ let winAnnounced = false;
 let newTilePosition = null;
 
 
-/// Add a new 2 or 4 tile
+// Add a new 2 or 4 tile
 function addTile() {
     const emptyCells = [];
 
