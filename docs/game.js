@@ -514,6 +514,7 @@ document.addEventListener(
 );
 
 // Touch / swipe controls for mobile devices
+// Swiping anywhere on the page controls the game
 
 let touchStartX = 0;
 let touchStartY = 0;
@@ -521,6 +522,11 @@ let touchStartY = 0;
 boardElement.addEventListener(
     "touchstart",
     function (event) {
+
+        // Allow buttons to behave normally
+        if (event.target.closest("button")) {
+            return;
+        }
 
         event.preventDefault();
 
@@ -537,8 +543,12 @@ boardElement.addEventListener(
     "touchmove",
     function (event) {
 
-        // Prevent the page from scrolling while
-        // the player is swiping on the game board
+        // Allow normal button interaction
+        if (event.target.closest("button")) {
+            return;
+        }
+
+        // Keep the page stationary while swiping
         event.preventDefault();
     },
     { passive: false }
@@ -548,6 +558,11 @@ boardElement.addEventListener(
 boardElement.addEventListener(
     "touchend",
     function (event) {
+
+        // Allow buttons to behave normally
+        if (event.target.closest("button")) {
+            return;
+        }
 
         event.preventDefault();
 
