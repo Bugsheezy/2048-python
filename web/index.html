@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>2048 by John Ocampo</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <header>
+            <h1>2048</h1>
+            <p class="creator">by John Ocampo</p>
+        </header>
+
+        <section class="scores">
+
+            <div class="score-box">
+                <span>SCORE</span>
+                <strong id="score">0</strong>
+            </div>
+
+            <div class="score-box">
+                <span>BEST</span>
+                <strong id="best-score">0</strong>
+            </div>
+
+        </section>
+
+        <section
+            id="game-board"
+            class="game-board"
+        >
+        </section>
+
+        <button id="new-game-button">
+            New Game
+        </button>
+
+        <section class="leaderboard">
+
+            <h2>TOP 3 SCORES</h2>
+
+            <ol id="leaderboard-list">
+                <li>---</li>
+                <li>---</li>
+                <li>---</li>
+            </ol>
+
+        </section>
+
+        <p class="instructions">
+        Use the arrow keys, WASD, or swipe to move
+    </p>
+
+    </main>
+
+    <script src="game.js"></script>
+
+</body>
+
+</html>
