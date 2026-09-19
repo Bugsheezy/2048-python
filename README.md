@@ -4,7 +4,17 @@ A recreation of the classic 2048 puzzle game, developed as both a Python desktop
 
 **[Play the live version](https://bugsheezy.github.io/2048-python/)**
 
-![2048 gameplay](screenshots/2048-game.png)
+## Live Web Version
+
+**[Play 2048 in your browser](https://bugsheezy.github.io/2048-python/)**
+
+![2048 web version](screenshots/2048-web.png)
+
+## Python Desktop Version
+
+The project originally began as a desktop application built with Python and Tkinter before being expanded into a browser-based version.
+
+![2048 desktop version](screenshots/2048-game.png)
 
 ## About the Project
 
@@ -118,9 +128,9 @@ Python 3 with Tkinter is required.
 
 The first complete release includes the desktop and browser implementations, scoring, persistent best score, keyboard controls, mobile swipe controls, responsive design, win/game-over detection, and public deployment.
 
-### v1.1 — Planned
+### v1.1 — Visual Polish
 
-The next iteration will focus on subtle animations and visual polish without changing the core gameplay.
+Added subtle tile spawn animations and interface polish while preserving the original gameplay and responsive mobile controls.
 
 ## Future Improvements
 
