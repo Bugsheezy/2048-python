@@ -119,3 +119,10 @@ class Game2048:
                     return False
 
         return True
+
+    def has_won(self):
+        for row in self.board:
+            if 2048 in row:
+                return True
+
+        return False
