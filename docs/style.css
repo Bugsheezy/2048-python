@@ -71,6 +71,8 @@ h1 {
 
     background: #bbada0;
     border-radius: 8px;
+
+    touch-action: none;
 }
 
 .tile {
