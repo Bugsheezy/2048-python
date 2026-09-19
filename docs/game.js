@@ -16,7 +16,7 @@ let winAnnounced = false;
 let newTilePosition = null;
 
 
-// Add a new 2 or 4 tile
+/// Add a new 2 or 4 tile
 function addTile() {
     const emptyCells = [];
 
@@ -39,8 +39,9 @@ function addTile() {
 
         board[row][column] =
             Math.random() < 0.1 ? 4 : 2;
+
+        newTilePosition = [row, column];
     }
-    newTilePosition = [row, column];
 }
 
 
@@ -335,7 +336,7 @@ if (
 boardElement.appendChild(tile);
         }
     }
-    
+
     newTilePosition = null;
 
     scoreElement.textContent = score;
