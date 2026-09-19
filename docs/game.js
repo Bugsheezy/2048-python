@@ -3,9 +3,6 @@ const scoreElement = document.getElementById("score");
 const bestScoreElement = document.getElementById("best-score");
 const newGameButton = document.getElementById("new-game-button");
 
-const leaderboardElement =
-    document.getElementById("leaderboard-list");
-
 
 let board = [
     [0, 0, 0, 0],
@@ -288,8 +285,6 @@ function move(direction) {
     // did not change the board
     if (gameOver()) {
 
-        checkHighScore();
-
         const startAgain = confirm(
             `Game Over!\n\n` +
             `Final Score: ${score}\n\n` +
@@ -334,89 +329,6 @@ function updateDisplay() {
     scoreElement.textContent = score;
 
     updateBestScore();
-}
-
-// Load the Top 3 scores from the browser
-function loadHighScores() {
-
-    const savedScores =
-        localStorage.getItem("highScores");
-
-    if (savedScores) {
-        return JSON.parse(savedScores);
-    }
-
-    return [];
-}
-
-
-// Display the Top 3 scores
-function updateLeaderboard() {
-
-    const highScores = loadHighScores();
-
-    leaderboardElement.innerHTML = "";
-
-    for (let i = 0; i < 3; i++) {
-
-        const item =
-            document.createElement("li");
-
-        if (i < highScores.length) {
-
-            item.textContent =
-                `${highScores[i].name} - ${highScores[i].score}`;
-
-        } else {
-
-            item.textContent = "---";
-        }
-
-        leaderboardElement.appendChild(item);
-    }
-}
-
-
-// Check whether the completed game made the Top 3
-function checkHighScore() {
-
-    const highScores = loadHighScores();
-
-    const qualifies =
-        highScores.length < 3 ||
-        score > highScores[highScores.length - 1].score;
-
-    if (!qualifies) {
-        return;
-    }
-
-    let name = prompt(
-        `Your score of ${score} made the Top 3!\n\n` +
-        "Enter your name:"
-    );
-
-    if (!name || !name.trim()) {
-        name = "Anonymous";
-    }
-
-    highScores.push({
-        name: name.trim(),
-        score: score
-    });
-
-    highScores.sort(
-        (a, b) => b.score - a.score
-    );
-
-    const topThree =
-        highScores.slice(0, 3);
-
-    localStorage.setItem(
-        "highScores",
-        JSON.stringify(topThree)
-    );
-
-    updateLeaderboard();
 }
 
 // Update BEST score
@@ -514,7 +426,7 @@ document.addEventListener(
 );
 
 // Touch / swipe controls for mobile devices
-// Swiping anywhere on the page controls the game
+// Swiping on the game board controls the game
 
 let touchStartX = 0;
 let touchStartY = 0;
@@ -620,8 +532,10 @@ newGameButton.addEventListener(
     newGame
 );
 
-// Load saved leaderboard
-updateLeaderboard();
-
-// Start the first game
-newGame(false);
+// Start the first game when the page has fully loaded
+window.addEventListener(
+    "load",
+    function () {
+        newGame(false);
+    }
+);
