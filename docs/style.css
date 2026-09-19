@@ -114,21 +114,6 @@ h1 {
     cursor: pointer;
 }
 
-.leaderboard {
-    margin-top: 10px;
-}
-
-.leaderboard h2 {
-    font-size: 18px;
-}
-
-#leaderboard-list {
-    display: inline-block;
-    min-width: 180px;
-    padding-left: 30px;
-    text-align: left;
-}
-
 .instructions {
     margin-top: 15px;
     font-size: 14px;
