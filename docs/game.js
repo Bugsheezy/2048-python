@@ -13,6 +13,7 @@ let board = [
 
 let score = 0;
 let winAnnounced = false;
+let newTilePosition = null;
 
 
 // Add a new 2 or 4 tile
@@ -39,6 +40,7 @@ function addTile() {
         board[row][column] =
             Math.random() < 0.1 ? 4 : 2;
     }
+    newTilePosition = [row, column];
 }
 
 
@@ -316,15 +318,25 @@ function updateDisplay() {
                 board[row][column];
 
             if (value !== 0) {
-                tile.textContent = value;
-                tile.classList.add(
-                    `tile-${value}`
-                );
-            }
+    tile.textContent = value;
+    tile.classList.add(
+        `tile-${value}`
+    );
+}
 
-            boardElement.appendChild(tile);
+if (
+    newTilePosition &&
+    newTilePosition[0] === row &&
+    newTilePosition[1] === column
+) {
+    tile.classList.add("tile-new");
+}
+
+boardElement.appendChild(tile);
         }
     }
+    
+    newTilePosition = null;
 
     scoreElement.textContent = score;
 
