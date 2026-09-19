@@ -32,6 +32,7 @@ class GameGUI:
         self.root.resizable(False, False)
 
         self.game = Game2048()
+        self.win_announced = False
 
         title = tk.Label(
             root,
@@ -120,11 +121,29 @@ class GameGUI:
         if moved:
             self.update_display()
 
-            if self.game.game_over():
-                messagebox.showinfo(
-                    "Game Over",
-                    f"Game Over!\n\nFinal Score: {self.game.score}"
+            if self.game.has_won() and not self.win_announced:
+                self.win_announced = True
+
+                play_again = messagebox.askyesno(
+                    "You Win!",
+                    f"You reached 2048!\n\n"
+                    f"Score: {self.game.score}\n\n"
+                    "Start a new game?"
                 )
+
+                if play_again:
+                    self.new_game()
+
+            elif self.game.game_over():
+                play_again = messagebox.askyesno(
+                    "Game Over",
+                    f"No more moves available.\n\n"
+                    f"Final Score: {self.game.score}\n\n"
+                    "Start a new game?"
+                )
+
+                if play_again:
+                    self.new_game()
 
     def update_display(self):
         for row in range(4):
@@ -158,6 +177,7 @@ class GameGUI:
 
     def new_game(self):
         self.game = Game2048()
+        self.win_announced = False
         self.update_display()
 
 

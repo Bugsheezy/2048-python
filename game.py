@@ -92,6 +92,8 @@ class Game2048:
             self.move_up()
         elif direction == "down":
             self.move_down()
+        else:
+            return False
 
         # Only create a new tile if something actually moved
         if self.board != old_board:
